@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Thiên Ân Group | Hỗ trợ Tiểu luận, Báo cáo Thực tập, Khóa luận, Luận văn</title>
+  <meta name="description" content="Thiên Ân Group: Hỗ trợ tiểu luận, báo cáo thực tập, chuyên đề tốt nghiệp, khóa luận, luận văn; tư vấn phương pháp, phân tích dữ liệu, chuẩn hóa tài liệu, coaching bảo vệ. Tài liệu học thuật: khái niệm, phương pháp, thống kê ứng dụng." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --primary:#2563eb; --primary-dark:#1e40af; --accent:#16a34a;
+      --dark:#0f172a; --muted:#64748b; --bg:#f8fafc; --card:#ffffff;
+      --warning:#f59e0b; --danger:#ef4444; --radius:14px; --shadow:0 10px 25px rgba(2,6,23,0.08);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#0b1220;background:var(--bg);scroll-behavior:smooth}
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;height:auto;display:block}
+
+    /* Topbar & Header */
+    .topbar{background:var(--dark);color:#e2e8f0;font-size:14px}
+    .topbar .wrap{max-width:1120px;margin:0 auto;padding:8px 16px;display:flex;gap:16px;justify-content:space-between;align-items:center}
+    .topbar .contact{display:flex;gap:16px;align-items:center}
+    .badge{background:var(--accent);color:#fff;padding:4px 10px;border-radius:999px;font-weight:600}
+    header{position:sticky;top:0;background:#fff;border-bottom:1px solid #e2e8f0;z-index:50}
+    .nav{max-width:1120px;margin:0 auto;padding:12px 16px;display:flex;justify-content:space-between;align-items:center}
+    .brand{display:flex;gap:10px;align-items:center;transition:transform .15s ease}
+    .brand:hover{transform:translateY(-1px)}
+    .logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--primary),#7c3aed);display:grid;place-items:center;color:#fff;font-weight:800}
+    .brand span{font-weight:800}
+    nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0}
+    nav a{padding:8px 10px;color:#0b1220;border-radius:10px;transition:background .15s ease, color .15s ease}
+    nav a:hover{background:#eef2ff;color:var(--primary)}
+    .cta{padding:10px 16px;border-radius:10px;background:var(--primary);color:#fff;font-weight:700;box-shadow:var(--shadow);transition:transform .1s ease, background .15s ease}
+    .cta:hover{background:var(--primary-dark);transform:translateY(-1px)}
+    .cta:active{transform:translateY(0)}
+
+    /* Hero */
+    .hero{background:linear-gradient(180deg,#eef2ff,transparent);padding:56px 16px}
+    .hero .wrap{max-width:1120px;margin:0 auto;display:flex;gap:36px;align-items:center}
+    .hero .left{flex:1}
+    .hero h1{font-size:40px;line-height:1.2;margin:0 0 12px}
+    .hero p{color:var(--muted);margin:0 0 20px}
+    .points{display:flex;gap:12px;flex-wrap:wrap;margin:8px 0 20px}
+    .pill{background:#fff;border:1px solid #e2e8f0;color:#0b1220;padding:8px 12px;border-radius:999px;font-weight:600;transition:box-shadow .15s ease, transform .1s ease}
+    .pill:hover{box-shadow:0 4px 12px rgba(2,6,23,.08);transform:translateY(-1px)}
+    .btn{padding:12px 16px;border-radius:12px;font-weight:700;cursor:pointer}
+    .btn.primary{background:var(--primary);color:#fff;transition:transform .1s ease, background .15s ease, box-shadow .15s ease}
+    .btn.primary:hover{background:var(--primary-dark);box-shadow:0 10px 25px rgba(37,99,235,.25);transform:translateY(-1px)}
+    .btn.primary:active{transform:translateY(0)}
+    .btn.ghost{background:#fff;border:1px solid #e2e8f0;transition:box-shadow .15s ease, transform .1s ease}
+    .btn.ghost:hover{box-shadow:0 8px 20px rgba(2,6,23,.08);transform:translateY(-1px)}
+    .hero .right{flex:1}
+    .card{background:var(--card);border:1px solid #e2e8f0;border-radius:var(--radius);box-shadow:var(--shadow);padding:16px;transition:box-shadow .2s ease}
+    .card:hover{box-shadow:0 14px 30px rgba(2,6,23,.12)}
+    .stats{display:flex;gap:14px;margin-top:14px;flex-wrap:wrap}
+    .stat{flex:1;min-width:120px;background:#f1f5f9;border-radius:12px;padding:12px;text-align:center}
+    .stat strong{display:block;font-size:20px}
+
+    /* Sections */
+    section{padding:56px 16px}
+    .container{max-width:1120px;margin:0 auto}
+    .sec-head{margin-bottom:20px}
+    .sec-head h2{margin:0 0 8px;font-size:28px}
+    .sec-head p{margin:0;color:var(--muted)}
+
+    /* Services */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .service .icon{width:40px;height:40px;border-radius:10px;background:#eef2ff;color:var(--primary);display:grid;place-items:center;font-weight:800;margin-bottom:10px}
+    .service{transition:transform .1s ease, box-shadow .2s ease}
+    .service:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(2,6,23,.12)}
+    .service h3{margin:6px 0 6px;font-size:18px}
+    .service p{color:var(--muted);margin:0 0 10px}
+    .tag{display:inline-block;background:#f1f5f9;color:#0b1220;border-radius:999px;padding:4px 10px;font-size:12px;margin-right:6px;margin-bottom:6px;transition:background .15s ease}
+    .tag:hover{background:#e2e8f0}
+
+    /* Process */
+    .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .step{position:relative;padding-top:10px}
+    .step .num{position:absolute;top:-16px;left:-16px;background:var(--warning);color:#0b1220;width:28px;height:28px;border-radius:999px;display:grid;place-items:center;font-weight:800;border:2px solid #fff;box-shadow:var(--shadow)}
+
+    /* Pricing */
+    .pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .price h3{margin:0 0 6px}
+    .price .value{font-size:22px;font-weight:800;margin:6px 0}
+    .price ul{list-style:none;padding:0;margin:10px 0 0;color:var(--muted)}
+    .price li{margin:8px 0;display:flex;gap:8px;align-items:flex-start}
+    .ribbon{position:absolute;top:12px;right:-12px;background:var(--accent);color:#fff;padding:6px 12px;border-radius:999px;font-size:12px;font-weight:800;transform:rotate(8deg);box-shadow:var(--shadow)}
+
+    /* Academic Hub (Tài liệu học thuật) */
+    .searchbar{display:flex;gap:8px;margin:12px 0}
+    .searchbar input{flex:1}
+    .topic-tags{display:flex;gap:8px;flex-wrap:wrap}
+    .topic-tags .tag{cursor:pointer}
+    .posts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .post{border:1px solid #e2e8f0;border-radius:12px;background:#fff;padding:16px;transition:box-shadow .2s ease, transform .1s ease}
+    .post:hover{box-shadow:0 12px 24px rgba(2,6,23,.1);transform:translateY(-1px)}
+    .post h3{margin:0 0 8px}
+    .post p{margin:0;color:var(--muted)}
+    .see-all{margin-top:12px;display:inline-block;color:#0b1220;border:1px solid #e2e8f0;padding:10px 14px;border-radius:10px;transition:background .15s ease}
+    .see-all:hover{background:#f8fafc}
+
+    /* FAQ & Footer */
+    .testi{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    blockquote{margin:0;color:#0b1220}
+    .author{margin-top:10px;color:#64748b;font-size:14px}
+    .faq .item{border:1px solid #e2e8f0;border-radius:12px;padding:14px;background:#fff;transition:box-shadow .2s ease}
+    .faq .item:hover{box-shadow:0 12px 24px rgba(2,6,23,.1)}
+    .faq summary{font-weight:700;cursor:pointer}
+    .faq p{color:var(--muted)}
+
+    .lead{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}
+    .form .row{display:flex;gap:10px}
+    input, select, textarea{width:100%;padding:12px 12px;border:1px solid #e2e8f0;border-radius:10px;font-size:14px;background:#fff;transition:border-color .15s ease, box-shadow .15s ease, transform .05s ease}
+    input:focus, select:focus, textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 4px rgba(37,99,235,.15)}
+    textarea{min-height:120px;resize:vertical}
+    .note{font-size:12px;color:#64748b}
+
+    footer{background:#0b1220;color:#cbd5e1;padding:36px 16px}
+    .foot{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:16px}
+    footer a{color:#e2e8f0}
+    .copyright{margin-top:16px;text-align:center;font-size:13px;color:#94a3b8}
+
+    /* Responsive */
+    @media (max-width: 1024px){
+      .posts{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width: 960px){
+      .hero .wrap{flex-direction:column}
+      .grid{grid-template-columns:1fr 1fr}
+      .steps{grid-template-columns:1fr 1fr}
+      .pricing{grid-template-columns:1fr}
+      .testi{grid-template-columns:1fr 1fr}
+      .lead{grid-template-columns:1fr}
+      .foot{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width: 640px){
+      nav ul{display:none}
+      .grid,.steps,.testi{grid-template-columns:1fr}
+      .hero h1{font-size:32px}
+      .card{padding:14px}
+      .posts{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="wrap">
+      <div class="contact">
+        <span class="badge">Tư vấn miễn phí 24/7</span>
+        <span>Hotline: <strong>0384 715 102</strong></span>
+        <span>Zalo/Messenger: <strong>@thienangroup</strong></span>
+      </div>
+      <div>Đảm bảo bảo mật & đạo đức học thuật</div>
+    </div>
+  </div>
+
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <div class="logo">TA</div>
+        <span>Thiên Ân Group</span>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#dich-vu">Dịch vụ</a></li>
+          <li><a href="#quy-trinh">Quy trình</a></li>
+          <li><a href="#bang-gia">Bảng giá</a></li>
+          <li><a href="#tai-lieu">Tài liệu học thuật</a></li>
+          <li><a href="#cam-nhan">Cảm nhận</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </nav>
+      <a class="cta" href="#dang-ky">Nhận tư vấn miễn phí</a>
+    </div>
+  </header>
+
+  <!-- Hero, Dịch vụ, Quy trình, Bảng giá, Cảm nhận, FAQ giữ nguyên như phiên bản gần nhất của bạn -->
+  <!-- Để ngắn gọn, các section trước đó giả định đã tồn tại trong bản của bạn -->
+  <!-- Bắt đầu section mới: Tài liệu học thuật -->
+
+  <section id="tai-lieu">
+    <div class="container">
+      <div class="sec-head">
+        <h2>Tài liệu học thuật</h2>
+        <p>Thư viện bài viết về khái niệm, phương pháp nghiên cứu, thống kê ứng dụng và các chủ đề liên quan.</p>
+      </div>
+
+      <!-- Tìm kiếm nội bộ -->
+      <div class="searchbar">
+        <input id="searchInput" type="search" placeholder="Tìm nhanh (ví dụ: marketing là gì, 7P, STP, EFA, CFA)...">
+        <button id="searchBtn" class="btn ghost" type="button">Tìm</button>
+      </div>
+
+      <!-- Danh mục chủ đề -->
+      <div class="topic-tags" style="margin-bottom:12px">
+        <span class="tag" data-topic="marketing">Marketing</span>
+        <span class="tag" data-topic="tai-chinh">Tài chính</span>
+        <span class="tag" data-topic="kinh-te">Kinh tế học</span>
+        <span class="tag" data-topic="phuong-phap">Phương pháp nghiên cứu</span>
+        <span class="tag" data-topic="thong-ke">Thống kê ứng dụng</span>
+      </div>
+
+      <!-- Lưới bài nổi bật -->
+      <div id="posts" class="posts">
+        <!-- Bài mẫu 1 -->
+        <article class="post" data-topics="marketing" data-title="marketing là gì" data-summary="định nghĩa marketing, vai trò, chức năng, 7P, STP">
+          <h3><a href="#bai-marketing-la-gi">Marketing là gì? Định nghĩa, vai trò và các nội dung liên quan</a></h3>
+          <p>Tổng quan marketing: định nghĩa, vai trò, các mảng chính (nghiên cứu thị trường, STP, marketing mix), liên kết đến bài liên quan.</p>
+        </article>
+
+        <!-- Bài mẫu 2 -->
+        <article class="post" data-topics="marketing" data-title="7p trong marketing" data-summary="marketing mix, 7p, product price place promotion people process physical evidence">
+          <h3><a href="#bai-7p-trong-marketing">7P trong Marketing: Khái niệm và ứng dụng</a></h3>
+          <p>Giải thích 7P (Product, Price, Place, Promotion, People, Process, Physical Evidence) và gợi ý ứng dụng thực tế.</p>
+        </article>
+
+        <!-- Bài mẫu 3 -->
+        <article class="post" data-topics="phuong-phap thong-ke" data-title="efa cfa là gì" data-summary="phân tích nhân tố khám phá khẳng định">
+          <h3><a href="#bai-efa-cfa">EFA/CFA là gì? Khi nào dùng và diễn giải cơ bản</a></h3>
+          <p>Phân biệt EFA và CFA, tiêu chí thường dùng và lưu ý khi báo cáo kết quả.</p>
+        </article>
+      </div>
+
+      <a class="see-all" href="#tai-lieu">Xem tất cả chủ đề</a>
+
+      <hr style="border:none;border-top:1px solid #e2e8f0;margin:24px 0">
+
+      <!-- Bài chi tiết mẫu ngay trong index (có thể tách ra file riêng sau) -->
+      <article id="bai-marketing-la-gi" class="card" style="margin-top:8px">
+        <h2 style="margin-top:0">Marketing là gì?</h2>
+        <p><em>Tóm tắt:</em> Marketing thường được hiểu là quá trình tạo ra, truyền thông và phân phối giá trị để thỏa mãn nhu cầu của khách hàng mục tiêu, thông qua các hoạt động như nghiên cứu thị trường, phân khúc–định vị, xây dựng marketing mix và quản trị quan hệ khách hàng.</p>
+
+        <h3>1) Định nghĩa ngắn gọn</h3>
+        <p>Marketing là tập hợp hoạt động nhằm thấu hiểu và đáp ứng nhu cầu khách hàng mục tiêu, bao gồm tạo/điều chỉnh sản phẩm–dịch vụ, định giá, phân phối và truyền thông để mang lại giá trị cho khách hàng và đạt mục tiêu của tổ chức.</p>
+
+        <h3>2) Các mảng nội dung chính</h3>
+        <ul>
+          <li>Nghiên cứu thị trường: hành vi, nhu cầu, xu hướng và đối thủ.</li>
+          <li>STP: phân khúc (Segmentation), lựa chọn thị trường mục tiêu (Targeting), định vị (Positioning).</li>
+          <li>Marketing mix: 4P/7P (sản phẩm, giá, kênh phân phối, truyền thông; con người, quy trình, bằng chứng hữu hình).</li>
+          <li>Đo lường và tối ưu: mục tiêu, chỉ số (KPI), kiểm thử, phân tích hiệu quả.</li>
+        </ul>
+
+        <h3>3) Các mục liên quan</h3>
+        <ul>
+          <li><a href="#bai-7p-trong-marketing">7P trong Marketing</a></li>
+          <li><a href="#bai-efa-cfa">EFA/CFA là gì?</a></li>
+        </ul>
+
+        <details style="margin-top:10px">
+          <summary><strong>Tham khảo và ghi chú biên tập</strong></summary>
+          <p>Phần nội dung nên được biên soạn dựa trên tổng hợp tài liệu mở và giáo trình, có diễn giải lại và ghi công nguồn ở cuối bài khi trích dẫn trực tiếp.</p>
+          <ul>
+            <li>Gợi ý bổ sung nguồn khi xuất bản chính thức: giáo trình marketing cơ bản, các ấn phẩm học thuật hoặc nguồn mở (CC BY) về định nghĩa và vai trò marketing.</li>
+          </ul>
+        </details>
+      </article>
+
+      <article id="bai-7p-trong-marketing" class="card" style="margin-top:16px">
+        <h2 style="margin-top:0">7P trong Marketing</h2>
+        <p>Mô hình 7P mở rộng từ 4P truyền thống, bổ sung People, Process, Physical Evidence để phản ánh đặc thù dịch vụ.</p>
+        <ul>
+          <li>Product, Price, Place, Promotion: cấu phần nền tảng của marketing mix.</li>
+          <li>People: con người tham gia cung ứng và tiếp xúc khách hàng.</li>
+          <li>Process: quy trình cung ứng tạo trải nghiệm nhất quán.</li>
+          <li>Physical Evidence: bằng chứng hữu hình củng cố niềm tin về chất lượng.</li>
+        </ul>
+        <p>Xem thêm: <a href="#bai-marketing-la-gi">Marketing là gì?</a></p>
+      </article>
+
+      <article id="bai-efa-cfa" class="card" style="margin-top:16px">
+        <h2 style="margin-top:0">EFA/CFA là gì?</h2>
+        <p>EFA (khám phá) và CFA (khẳng định) là hai kỹ thuật phân tích nhân tố trong nghiên cứu định lượng để kiểm định cấu trúc thang đo.</p>
+        <ul>
+          <li>EFA: khám phá cấu trúc tiềm ẩn, định hướng mô hình đo lường.</li>
+          <li>CFA: kiểm định mô hình đo lường đề xuất bằng chỉ số phù hợp.</li>
+        </ul>
+        <p>Liên quan: <a href="#bai-marketing-la-gi">Marketing là gì?</a></p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Liên hệ + Form (giữ như bản trước, đã có gửi Telegram và upload file) -->
+  <section id="dang-ky" style="background:#fff">
+    <div class="container">
+      <div class="sec-head">
+        <h2>Nhận tư vấn miễn phí trong 15 phút</h2>
+        <p>Điền thông tin bên dưới, đội ngũ sẽ phản hồi qua Zalo/Messenger hoặc gọi điện.</p>
+      </div>
+      <div class="lead">
+        <div class="card form">
+          <div class="row" style="margin-bottom:10px">
+            <input id="name" type="text" placeholder="Họ và tên">
+            <input id="phone" type="tel" placeholder="Số điện thoại/Zalo">
+          </div>
+          <div class="row" style="margin-bottom:10px">
+            <input id="email" type="email" placeholder="Email">
+            <select id="level">
+              <option value="">Chọn cấp độ</option>
+              <option>Tiểu luận</option>
+              <option>Báo cáo thực tập</option>
+              <option>Chuyên đề tốt nghiệp</option>
+              <option>Khóa luận/Đồ án</option>
+              <option>Luận văn Thạc sĩ</option>
+              <option>Bài báo khoa học</option>
+            </select>
+          </div>
+          <div class="row" style="margin-bottom:10px">
+            <select id="method">
+              <option value="">Phương pháp</option>
+              <option>Định tính</option>
+              <option>Định lượng</option>
+              <option>Mixed-method</option>
+            </select>
+            <input id="deadline" type="number" placeholder="Thời hạn (ngày)">
+          </div>
+          <textarea id="desc" placeholder="Mô tả ngắn đề tài/yêu cầu (đính kèm file bên dưới nếu có)"></textarea>
+
+          <div class="row" style="margin-top:10px;flex-direction:column">
+            <label for="files"><strong>Tải tài liệu đính kèm (tối đa 10 file, 10MB/file)</strong></label>
+            <input id="files" type="file" multiple accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.csv,.zip,.rar,.png,.jpg,.jpeg">
+            <div id="fileList" class="note">Chưa chọn file.</div>
+          </div>
+
+          <div class="row" style="margin-top:10px;justify-content:space-between;align-items:center">
+            <label style="display:flex;gap:8px;align-items:center;font-size:14px">
+              <input id="agree" type="checkbox"> Tôi đồng ý với điều khoản bảo mật & đạo đức học thuật
+            </label>
+            <button id="sendBtn" class="btn primary" type="button">Gửi yêu cầu</button>
+          </div>
+          <p class="note" style="margin-top:8px">Hoặc liên hệ nhanh: <a href="https://zalo.me/0384715102" target="_blank">Zalo</a> • <a href="tel:0384715102">Gọi 0384 715 102</a></p>
+          <p id="status" class="note" style="margin-top:6px"></p>
+        </div>
+
+        <div class="card">
+          <h3 style="margin:0 0 10px">Liên hệ</h3>
+          <p><strong>Văn phòng:</strong> Quang Khải, Hải Quang, Ninh Bình (online toàn quốc)</p>
+          <p><strong>Hotline:</strong> 0384 715 102</p>
+          <p><strong>Email:</strong> tailieuxanh2025@gmail.com</p>
+          <p><strong>Giờ làm việc:</strong> 08:00–22:00 (T2–CN)</p>
+          <hr style="border:none;border-top:1px solid #e2e8f0;margin:12px 0">
+          <h3 style="margin:0 0 10px">Cam kết</h3>
+          <ul style="margin:0 0 0 18px;color:#64748b">
+            <li>Minh bạch quy trình, mốc nghiệm thu rõ ràng</li>
+            <li>Bảo mật thông tin 100%</li>
+            <li>Tôn trọng đạo đức học thuật, không làm thay bảo vệ</li>
+            <li>Hỗ trợ đến khi hoàn tất theo phạm vi đã thỏa thuận</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot">
+      <div>
+        <div class="brand" style="margin-bottom:8px">
+          <div class="logo">TA</div>
+          <span>Thiên Ân Group</span>
+        </div>
+        <p>Đồng hành học thuật đáng tin cậy: tiểu luận, báo cáo thực tập, chuyên đề tốt nghiệp, khóa luận, luận văn.</p>
+      </div>
+      <div>
+        <h4 style="margin:0 0 8px;color:#fff">Điều hướng</h4>
+        <p><a href="#dich-vu">Dịch vụ</a> · <a href="#quy-trinh">Quy trình</a> · <a href="#bang-gia">Bảng giá</a> · <a href="#tai-lieu">Tài liệu học thuật</a> · <a href="#faq">FAQ</a></p>
+      </div>
+      <div>
+        <h4 style="margin:0 0 8px;color:#fff">Kết nối</h4>
+        <p><a href="https://zalo.me/0384715102" target="_blank">Zalo</a> · <a href="tel:0384715102">0384 715 102</a></p>
+      </div>
+    </div>
+    <div class="copyright">© 2025 Thiên Ân Group. All rights reserved.</div>
+  </footer>
+
+  <script>
+    // Cấu hình Telegram (demo)
+    const TELEGRAM_BOT_TOKEN = "7228607816:AAGlDG4rtNuN_9FDE-23QOzIFJEGdCe-QYo";
+    const TELEGRAM_CHAT_ID = "-4881582532";
+    const MAX_FILES = 10;
+    const MAX_SIZE = 10 * 1024 * 1024;
+
+    // Hiển thị & lọc file hợp lệ
+    const filesInput = document.getElementById("files");
+    const fileListEl = document.getElementById("fileList");
+    filesInput?.addEventListener("change", ()=>{
+      const files = Array.from(filesInput.files || []);
+      const problems = [];
+      const okFiles = [];
+      files.forEach((f, idx) => {
+        if (idx >= MAX_FILES) { problems.push(`Vượt quá ${MAX_FILES} file, chỉ lấy ${MAX_FILES} file đầu.`); return; }
+        if (f.size > MAX_SIZE) problems.push(`"${f.name}" > 10MB, vui lòng chọn file nhỏ hơn.`);
+        else okFiles.push(f);
+      });
+      const finalFiles = okFiles.slice(0, MAX_FILES);
+      const dt = new DataTransfer(); finalFiles.forEach(f => dt.items.add(f)); filesInput.files = dt.files;
+      fileListEl.innerHTML = finalFiles.length
+        ? ("Đã chọn: " + finalFiles.map(f => `${f.name} (${(f.size/1024/1024).toFixed(2)}MB)`).join(", "))
+        : "Chưa chọn file.";
+      if (problems.length) fileListEl.innerHTML += "<br><span style='color:#ef4444'>" + problems.join("<br>") + "</span>";
+    });
+
+    function validateForm(d){
+      if(!d.name || !d.phone || !d.level || !d.method || !d.deadline || !d.agree){
+        return "Vui lòng điền đủ thông tin và đồng ý điều khoản.";
+      }
+      const files = Array.from(d.files||[]);
+      if (files.length > MAX_FILES) return `Chỉ tối đa ${MAX_FILES} file.`;
+      for (const f of files){ if (f.size > MAX_SIZE) return `File "${f.name}" vượt 10MB.`; }
+      return null;
+    }
+
+    function esc(s){ return String(s||"").replace(/[<>&]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;'}[c])); }
+
+    function buildMessage(d){
+      return [
+        "<b>Yêu cầu tư vấn mới - Thiên Ân Group</b>",
+        `• Họ tên: <b>${esc(d.name)}</b>`,
+        `• Điện thoại: <b>${esc(d.phone)}</b>`,
+        d.email ? `• Email: <b>${esc(d.email)}</b>` : null,
+        `• Cấp độ: <b>${esc(d.level)}</b>`,
+        `• Phương pháp: <b>${esc(d.method)}</b>`,
+        `• Thời hạn: <b>${esc(d.deadline)} ngày</b>`,
+        d.desc ? `• Mô tả: ${esc(d.desc)}` : null,
+        d.files && d.files.length ? `• Số file đính kèm: <b>${d.files.length}</b>` : null,
+        "",
+        `<i>Timestamp: ${new Date().toLocaleString("vi-VN")}</i>`
+      ].filter(Boolean).join("\n");
+    }
+
+    async function sendMessageToTelegram(text){
+      const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+      const res = await fetch(url, { method:"POST", headers:{"Content-Type":"application/json"},
+        body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text, parse_mode:"HTML", disable_web_page_preview:true }) });
+      if(!res.ok) throw new Error("sendMessage lỗi: " + await res.text());
+      return res.json();
+    }
+
+    async function sendDocumentToTelegram(file, caption=""){
+      const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendDocument`;
+      const form = new FormData();
+      form.append("chat_id", TELEGRAM_CHAT_ID);
+      form.append("document", file, file.name);
+      if (caption) form.append("caption", caption);
+      const res = await fetch(url, { method:"POST", body: form });
+      if(!res.ok) throw new Error(`sendDocument lỗi (${file.name}): ` + await res.text());
+      return res.json();
+    }
+
+    async function sendForm(){
+      const statusEl = document.getElementById("status");
+      const data = {
+        name: document.getElementById("name").value.trim(),
+        phone: document.getElementById("phone").value.trim(),
+        email: document.getElementById("email").value.trim(),
+        level: document.getElementById("level").value,
+        method: document.getElementById("method").value,
+        deadline: document.getElementById("deadline").value.trim(),
+        desc: document.getElementById("desc").value.trim(),
+        files: Array.from(document.getElementById("files").files || []),
+        agree: document.getElementById("agree").checked
+      };
+      const err = validateForm(data);
+      if(err){ statusEl.textContent = err; statusEl.style.color = "#ef4444"; return; }
+
+      statusEl.textContent = "Đang gửi yêu cầu..."; statusEl.style.color = "#64748b";
+
+      try{
+        await sendMessageToTelegram(buildMessage(data));
+      }catch(e){
+        console.error(e);
+        statusEl.textContent = "Gửi thất bại (thông tin). Vui lòng thử lại hoặc liên hệ 0384 715 102.";
+        statusEl.style.color = "#ef4444";
+        return;
+      }
+
+      let ok=0, fail=0;
+      for (let i=0; i<data.files.length; i++){
+        const f = data.files[i];
+        try{
+          await sendDocumentToTelegram(f, `File ${i+1}/${data.files.length}: ${f.name}`);
+          ok++;
+        }catch(e){
+          console.error(e); fail++;
+        }
+      }
+
+      if (fail===0){
+        statusEl.textContent = "Đã gửi thành công! Chúng tôi sẽ liên hệ trong 15 phút.";
+        statusEl.style.color = "#16a34a";
+      } else if (ok>0){
+        statusEl.textContent = `Đã gửi thông tin và ${ok}/${data.files.length} file thành công. Một số file lỗi, vui lòng thử lại hoặc gửi qua Zalo.`;
+        statusEl.style.color = "#f59e0b";
+      } else {
+        statusEl.textContent = "Đã gửi thông tin, nhưng toàn bộ file đính kèm bị lỗi. Vui lòng thử lại hoặc gửi qua Zalo.";
+        statusEl.style.color = "#ef4444";
+      }
+    }
+    document.getElementById("sendBtn")?.addEventListener("click", sendForm);
+
+    // Tìm kiếm client-side trong “Tài liệu học thuật”
+    const postsEl = document.getElementById("posts");
+    const searchInput = document.getElementById("searchInput");
+    const searchBtn = document.getElementById("searchBtn");
+    const topicTags = document.querySelectorAll(".topic-tags .tag");
+
+    function filterPosts(){
+      const q = (searchInput.value || "").toLowerCase().trim();
+      const activeTopic = document.querySelector(".topic-tags .tag.active")?.dataset.topic || "";
+      const items = postsEl.querySelectorAll(".post");
+      let count = 0;
+      items.forEach(it=>{
+        const topics = (it.dataset.topics||"").toLowerCase();
+        const title = (it.dataset.title||"").toLowerCase();
+        const summary = (it.dataset.summary||"").toLowerCase();
+        const matchText = !q || title.includes(q) || summary.includes(q);
+        const matchTopic = !activeTopic || topics.includes(activeTopic);
+        const show = matchText && matchTopic;
+        it.style.display = show ? "" : "none";
+        if (show) count++;
+      });
+      if (count===0){
+        // Hiển thị note rỗng
+        if (!postsEl.querySelector(".nores")){
+          const div = document.createElement("div");
+          div.className="nores";
+          div.style.gridColumn="1/-1";
+          div.style.padding="12px";
+          div.style.color="#64748b";
+          div.style.border="1px dashed #e2e8f0";
+          div.style.borderRadius="10px";
+          div.textContent = "Không tìm thấy bài phù hợp. Thử từ khóa khác hoặc chọn chủ đề.";
+          postsEl.appendChild(div);
+        }
+      } else {
+        postsEl.querySelector(".nores")?.remove();
+      }
+    }
+    searchBtn?.addEventListener("click", filterPosts);
+    searchInput?.addEventListener("keydown", (e)=>{ if(e.key==="Enter") filterPosts(); });
+    topicTags.forEach(tag=>{
+      tag.addEventListener("click", ()=>{
+        topicTags.forEach(t=>t.classList.remove("active"));
+        tag.classList.add("active");
+        filterPosts();
+      });
+    });
+  </script>
+</body>
+</html>
